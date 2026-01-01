@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 增加此行以解決 Google Sites 嵌入圖片時的 Referrer 策略問題 -->
     <meta name="referrer" content="no-referrer">
     <title>碩倫 ❤️ 琬淳 | 婚禮邀請函</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -28,7 +27,6 @@
         .cursive {
             font-family: 'Dancing Script', cursive;
         }
-        /* 背景花瓣動畫 */
         .petal {
             position: fixed;
             background-color: #ffc0cb;
@@ -42,7 +40,6 @@
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
-        /* 漸顯動畫 */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -52,7 +49,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* 強化直式相框樣式 */
         .gold-border {
             border: 3px solid var(--gold);
             padding: 10px;
@@ -77,7 +73,6 @@
         .top-left { top: -12px; left: -12px; border-right: 0; border-bottom: 0; }
         .bottom-right { bottom: -12px; right: -12px; border-left: 0; border-top: 0; }
 
-        /* 輪播動畫樣式 */
         .slideshow-container {
             position: relative;
             width: 100%;
@@ -109,42 +104,34 @@
         <section class="relative min-h-screen flex flex-col items-center justify-center py-20 px-8 text-center border-b-4 border-yellow-600">
             <div class="cursive text-5xl gold-text mb-10 reveal active">We Are Getting Married</div>
             
-            <!-- 直立式相框 -->
             <div class="mx-auto mb-10 gold-border reveal active" 
                  style="width: 260px; aspect-ratio: 2/3; transition-delay: 0.3s;">
                 <div class="corner-decor top-left"></div>
                 <div class="corner-decor bottom-right"></div>
                 
                 <div class="slideshow-container overflow-hidden">
-                    <!-- 修正圖片代碼結構並確保連結正確 -->
                     <div class="slide">
-                        <img src="6.jpg" 
-                             onerror="this.src='https://lh3.googleusercontent.com/pw/AP1GczOlwRnoA2xdofasuzdDuxxgXjPswXIa36yNFG77PWEeMX5HAYWS0IjyJXtxqBOnSWnnydDhISPfuOc_3q2k8RDUs_ULqbPJNOl153QdQ2dwFAO7p5_5xo6vcpZ30aGfum-QigH0fXg-9Wjgt-NH7sIV=w499-h749-s-no-gm'"
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/6.jpg" 
                              alt="新人婚紗照 1" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
-                        <img src="2.jpg" 
-                             onerror="this.src='https://lh3.googleusercontent.com/pw/AP1GczNuynwxv6v8BJ2SD5-2RAkrW7IL8aJ7UQiQUvPZxCwimYyRc91RH25FqiKgzrDZX4kfFpjwz0eNEVMEP8IX6sA9sX0Qd3mAvwcyi796FBJ_5Pq1OkwWdBHQkxwMH_tgq8ZJlGbkayS5xflWKdRsv0LR=w499-h749-s-no-gm'"
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/2.jpg" 
                              alt="新人婚紗照 2" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
-                        <img src="3.jpg" 
-                             onerror="this.src='https://lh3.googleusercontent.com/pw/AP1GczPC7dUK7U6Jb2Mr-PDQ1SlcfS6PtLIlKf-RfjeXhLzzJbgF5NBzRk49ZyKCBHmOsvScvWvZEvvys45sjQvtc2yXy2dmiF3YRgouWDkRbUYfNfXIrO440eaJQBtLoDpYDo3a8XXPxTbiDfuN1TH1IOax=w499-h749-s-no-gm'"
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/3.jpg" 
                              alt="新人婚紗照 3" class="w-full h-full object-cover">
                     </div>
                     <div class="slide active">
-                        <img src="1.jpg" 
-                             onerror="this.src='https://lh3.googleusercontent.com/pw/AP1GczOYSL4P5NZ1qG82sEi2codtnyKyiQWAzSH7bGv9CV502sq15ZPY1VLwPX1vpen1p_3ygT1hUebvbwJ6--IqMNX-XjBkES75_-oPkZmE9GnjpaVMg7BYYugtXLRZKO3v8jpVEPVMlmtfPsT_W2Zw2UpT=w499-h749-s-no-gm'"
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/1.jpg" 
                              alt="新人婚紗照 4" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
-                        <img src="5.jpg" 
-                             onerror="this.src='https://lh3.googleusercontent.com/pw/AP1GczNDklS98pvOod4sbrpOfpfI-rWi8uAjc8lHLNG6B_jGWjGYZ1Zlgu9UVWqyxSMGNlbLOvZfclY_TG66qhptsJf6TSD8YHsaprQKcbW4D8qm_nkHk9QzgEy7Jau14jPzJPNpYeuDKy-bz_P1wgMnioMF=w499-h749-s-no-gm'"
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/5.jpg" 
                              alt="新人婚紗照 5" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
-                        <img src="4.jpg" 
-                             onerror="this.src='https://lh3.googleusercontent.com/pw/AP1GczM-kXJiyPI9O-FPl7p_9mIe431UWBb5ZZCDkrbA1I3lQCXHyxv3bGghKVQIbcnTgjQx2P7o6AXkIzhGZ6zmXwyvYV1__Eg2T7bxu80IODWp8u2uBvfCIvlxrqUsda1K3dvmKGlu1fhRkOJ5vzguKBDL=w499-h749-s-no-gm'"
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/4.jpg" 
                              alt="新人婚紗照 6" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -164,7 +151,6 @@
             </div>
         </section>
 
-        <!-- 第二屏：邀請資訊 -->
         <section class="p-10 text-center space-y-12 bg-stone-900 border-t border-yellow-900 relative">
             <div class="reveal">
                 <h2 class="text-2xl gold-text mb-6 flex items-center justify-center gap-2">
@@ -173,10 +159,18 @@
                     <span class="h-px w-8 bg-yellow-700"></span>
                 </h2>
                 <p class="leading-loose tracking-widest text-sm">
-                    在新春祥瑞的喜悅中<br>
-                    我們決定攜手開啟人生新篇章<br>
-                    您的祝福是我們最珍貴的禮物<br>
-                    誠摯邀請您 參與我們的幸福時刻
+                    兩姓聯姻，一堂締約<br>
+                    良緣永結，匹配同稱<br>
+                    在這個充滿愛與希望的日子<br>
+                    我們誠摯地邀請您<br>
+                    見證我們的幸福時刻<br>
+                
+               <h2 class="text-xl md:text-2xl font-bold my-4 golden-text">因為有您，喜悅更甚</h2>
+                <p class="leading-loose tracking-widest text-sm">
+                            這場婚禮不僅是我們的盟約<br>
+                            更是兩家人與好友們的相聚<br>
+                            期待在台南與您相見<br>
+                            分享這份甜蜜與感動
                 </p>
             </div>
 
@@ -204,7 +198,6 @@
                 </div>
                 
                 <div class="flex flex-col gap-3 pt-4">
-                    <!-- 更新為更穩定的 Google 地圖原始搜尋連結 -->
                     <a href="https://www.google.com/maps/search/?api=1&query=台南市安平區安平路988號+福爾摩沙遊艇酒店" 
                        target="_blank"
                        class="bg-[#d4af37] text-stone-900 py-4 rounded-xl font-bold hover:bg-yellow-400 transition transform active:scale-95 shadow-xl flex items-center justify-center gap-2">
@@ -237,11 +230,14 @@
             const slides = document.querySelectorAll('.slide');
             let currentSlide = 0;
             if (slides.length <= 1) return;
+            
+            // 此處調整輪播時間 (單位為毫秒)
+            // 4000 = 4秒，您可以根據需求修改為 3000 (3秒) 或 5000 (5秒)
             setInterval(() => {
                 slides[currentSlide].classList.remove('active');
                 currentSlide = (currentSlide + 1) % slides.length;
                 slides[currentSlide].classList.add('active');
-            }, 4000);
+            }, 3000); 
         }
 
         function createPetals() {
