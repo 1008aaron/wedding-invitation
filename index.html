@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 增加此行以解決 Google Sites 嵌入圖片時的 Referrer 策略問題 -->
     <meta name="referrer" content="no-referrer">
-    <title>碩倫 ❤️ 琬淳 | 婚禮喜帖</title>
+    <title>碩倫 ❤️ 琬淳 | 婚禮邀請函</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -13,6 +12,7 @@
             --primary-red: #8e0e00;
             --gold: #d4af37;
             --soft-pink: #fff0f0;
+            --env-bg: #a31100;
         }
         body {
             font-family: 'Noto Serif TC', serif;
@@ -21,6 +21,98 @@
             overflow-x: hidden;
             margin: 0;
         }
+
+        /* --- 信封開場樣式 --- */
+        #opening-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease-out, visibility 1s;
+        }
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .envelope-wrapper:hover {
+            transform: scale(1.02);
+        }
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background: var(--env-bg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 110px solid #c41500; /* 蓋子顏色 */
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out;
+        }
+        /* 點擊後的開蓋動畫 */
+        .envelope.open::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+        .envelope-front {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 110px solid var(--env-bg);
+        }
+        .envelope-front-top {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            border-left: 150px solid #b51300;
+            border-right: 150px solid #b51300;
+            border-top: 100px solid transparent;
+            border-bottom: 100px solid transparent;
+        }
+        .wax-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #ffd700, var(--gold));
+            border-radius: 50%;
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: opacity 0.4s ease;
+        }
+        .envelope.open .wax-seal {
+            opacity: 0;
+        }
+        .click-hint {
+            position: absolute;
+            bottom: -60px;
+            width: 100%;
+            text-align: center;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+        }
+
+        /* --- 喜帖內容樣式 --- */
         .gold-text {
             color: var(--gold);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
@@ -28,7 +120,6 @@
         .cursive {
             font-family: 'Dancing Script', cursive;
         }
-        /* 背景花瓣動畫 */
         .petal {
             position: fixed;
             background-color: #ffc0cb;
@@ -42,7 +133,10 @@
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
-        /* 漸顯動畫 */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -52,7 +146,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* 強化直式相框樣式 */
         .gold-border {
             border: 3px solid var(--gold);
             padding: 10px;
@@ -77,7 +170,6 @@
         .top-left { top: -12px; left: -12px; border-right: 0; border-bottom: 0; }
         .bottom-right { bottom: -12px; right: -12px; border-left: 0; border-top: 0; }
 
-        /* 輪播動畫樣式 */
         .slideshow-container {
             position: relative;
             width: 100%;
@@ -90,7 +182,6 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            /* 調整轉場動畫為 1.0s，搭配 3s 的停留時間效果更佳 */
             transition: opacity 1.0s ease-in-out;
             z-index: 1;
         }
@@ -100,51 +191,57 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-neutral-900">
 
+    <!-- 信封開場畫面 -->
+    <div id="opening-screen">
+        <div class="envelope-wrapper" onclick="openEnvelope()">
+            <div id="main-envelope" class="envelope">
+                <div class="envelope-front"></div>
+                <div class="envelope-front-top"></div>
+                <div class="wax-seal">囍</div>
+                <div class="click-hint">點擊開啟碩倫＆琬淳的婚禮喜帖</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 花瓣容器 -->
     <div id="petal-container"></div>
 
-    <main class="max-w-md mx-auto min-h-screen bg-neutral-900 shadow-2xl relative overflow-hidden">
+    <main id="main-content" class="max-w-md mx-auto min-h-screen bg-neutral-900 shadow-2xl relative overflow-hidden opacity-0">
         <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');"></div>
         
+        <!-- 第一屏 -->
         <section class="relative min-h-screen flex flex-col items-center justify-center py-20 px-8 text-center border-b-4 border-yellow-600">
-            <div class="cursive text-5xl gold-text mb-10 reveal active">We Are Getting Married</div>
+            <div class="cursive text-5xl gold-text mb-10 reveal">We Are Getting Married</div>
             
-            <!-- 直立式相框 -->
-            <div class="mx-auto mb-10 gold-border reveal active" 
-                 style="width: 260px; aspect-ratio: 2/3; transition-delay: 0.3s;">
+            <div class="mx-auto mb-10 gold-border reveal" style="width: 260px; aspect-ratio: 2/3; transition-delay: 0.3s;">
                 <div class="corner-decor top-left"></div>
                 <div class="corner-decor bottom-right"></div>
                 
                 <div class="slideshow-container overflow-hidden">
                     <div class="slide active">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/1.jpg" 
-                             alt="新人婚紗照 1" class="w-full h-full object-cover">
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/1.jpg" alt="新人婚紗照 1" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/2.jpg" 
-                             alt="新人婚紗照 2" class="w-full h-full object-cover">
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/2.jpg" alt="新人婚紗照 2" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/3.jpg" 
-                             alt="新人婚紗照 3" class="w-full h-full object-cover">
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/3.jpg" alt="新人婚紗照 3" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/4.jpg" 
-                             alt="新人婚紗照 4" class="w-full h-full object-cover">
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/4.jpg" alt="新人婚紗照 4" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/5.jpg" 
-                             alt="新人婚紗照 5" class="w-full h-full object-cover">
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/5.jpg" alt="新人婚紗照 5" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/6.jpg" 
-                             alt="新人婚紗照 6" class="w-full h-full object-cover">
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/6.jpg" alt="新人婚紗照 6" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
 
-            <div class="reveal active" style="transition-delay: 0.6s;">
+            <div class="reveal" style="transition-delay: 0.6s;">
                 <h1 class="text-4xl font-bold mb-4">
                     <span class="gold-text">謝碩倫</span> <small class="text-xl mx-2">❤️</small> <span class="gold-text">吳琬淳</span>
                 </h1>
@@ -234,12 +331,34 @@
     </main>
 
     <script>
+        // 開啟信封函數
+        function openEnvelope() {
+            const env = document.getElementById('main-envelope');
+            const openingScreen = document.getElementById('opening-screen');
+            const mainContent = document.getElementById('main-content');
+            
+            // 觸發開蓋動畫
+            env.classList.add('open');
+            
+            // 延遲一段時間後隱藏開場畫面並顯示主內容
+            setTimeout(() => {
+                openingScreen.style.opacity = '0';
+                openingScreen.style.visibility = 'hidden';
+                mainContent.style.opacity = '1';
+                mainContent.style.transition = 'opacity 1.5s ease-in';
+                
+                // 啟動主頁面動畫與輪播
+                handleScroll();
+                initSlideshow();
+                createPetals();
+            }, 800);
+        }
+
         function initSlideshow() {
             const slides = document.querySelectorAll('.slide');
             let currentSlide = 0;
             if (slides.length <= 1) return;
             
-            // 調整為 3000 毫秒（3秒）換一張
             setInterval(() => {
                 slides[currentSlide].classList.remove('active');
                 currentSlide = (currentSlide + 1) % slides.length;
@@ -249,6 +368,7 @@
 
         function createPetals() {
             const container = document.getElementById('petal-container');
+            if (container.children.length > 0) return; // 避免重複建立
             const petalCount = 18;
             for (let i = 0; i < petalCount; i++) {
                 const petal = document.createElement('div');
@@ -274,10 +394,10 @@
         }
 
         window.addEventListener('scroll', handleScroll);
+        
+        // 初始載入時不直接執行動畫，等待信封開啟
         window.onload = () => {
-            createPetals();
-            handleScroll();
-            initSlideshow();
+            // Pre-load content logic if needed
         };
     </script>
 </body>
