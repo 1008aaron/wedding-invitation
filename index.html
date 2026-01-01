@@ -9,8 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-red: #8e0e00;
+            --primary-red: #8e0e00;    /* 初始的正紅色 */
+            --content-bg: #3a0600;     /* 中間內容區塊改為深色 */
             --gold: #d4af37;
+            --light-gold: #f3e5ab;     /* 針對深色背景優化的淺金色 */
             --soft-pink: #fff0f0;
             --env-bg: #a31100;
         }
@@ -55,11 +57,10 @@
             z-index: 2;
             border-left: 150px solid transparent;
             border-right: 150px solid transparent;
-            border-top: 110px solid #c41500; /* 蓋子顏色 */
+            border-top: 110px solid #c41500;
             transform-origin: top;
             transition: transform 0.6s ease-in-out;
         }
-        /* 點擊後的開蓋動畫 */
         .envelope.open::before {
             transform: rotateX(180deg);
             z-index: 0;
@@ -150,7 +151,7 @@
             border: 3px solid var(--gold);
             padding: 10px;
             position: relative;
-            background: rgba(212, 175, 55, 0.05);
+            background: rgba(0, 0, 0, 0.3); 
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .gold-border::before {
@@ -191,7 +192,7 @@
         }
     </style>
 </head>
-<body class="bg-neutral-900">
+<body>
 
     <!-- 信封開場畫面 -->
     <div id="opening-screen">
@@ -200,7 +201,7 @@
                 <div class="envelope-front"></div>
                 <div class="envelope-front-top"></div>
                 <div class="wax-seal">囍</div>
-                <div class="click-hint">點擊開啟碩倫＆琬淳的婚禮喜帖</div>
+                <div class="click-hint">誠摯邀請您參與我們的喜悅</div>
             </div>
         </div>
     </div>
@@ -208,10 +209,10 @@
     <!-- 花瓣容器 -->
     <div id="petal-container"></div>
 
-    <main id="main-content" class="max-w-md mx-auto min-h-screen bg-neutral-900 shadow-2xl relative overflow-hidden opacity-0">
+    <main id="main-content" class="max-w-md mx-auto min-h-screen shadow-2xl relative overflow-hidden opacity-0" style="background-color: var(--primary-red);">
         <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');"></div>
         
-        <!-- 第一屏 -->
+        <!-- 第一屏：歡迎區 -->
         <section class="relative min-h-screen flex flex-col items-center justify-center py-20 px-8 text-center border-b-4 border-yellow-600">
             <div class="cursive text-5xl gold-text mb-10 reveal">We Are Getting Married</div>
             
@@ -220,24 +221,12 @@
                 <div class="corner-decor bottom-right"></div>
                 
                 <div class="slideshow-container overflow-hidden">
-                    <div class="slide active">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/1.jpg" alt="新人婚紗照 1" class="w-full h-full object-cover">
-                    </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/2.jpg" alt="新人婚紗照 2" class="w-full h-full object-cover">
-                    </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/3.jpg" alt="新人婚紗照 3" class="w-full h-full object-cover">
-                    </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/4.jpg" alt="新人婚紗照 4" class="w-full h-full object-cover">
-                    </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/5.jpg" alt="新人婚紗照 5" class="w-full h-full object-cover">
-                    </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/6.jpg" alt="新人婚紗照 6" class="w-full h-full object-cover">
-                    </div>
+                    <div class="slide active"><img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/1.jpg" alt="新人婚紗照 1" class="w-full h-full object-cover"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/2.jpg" alt="新人婚紗照 2" class="w-full h-full object-cover"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/3.jpg" alt="新人婚紗照 3" class="w-full h-full object-cover"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/4.jpg" alt="新人婚紗照 4" class="w-full h-full object-cover"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/5.jpg" alt="新人婚紗照 5" class="w-full h-full object-cover"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/6.jpg" alt="新人婚紗照 6" class="w-full h-full object-cover"></div>
                 </div>
             </div>
 
@@ -255,15 +244,15 @@
             </div>
         </section>
 
-        <!-- 第二屏：邀請資訊 -->
-        <section class="p-10 text-center space-y-12 bg-stone-900 border-t border-yellow-900 relative">
+        <!-- 第二屏：邀請資訊區 -->
+        <section class="p-10 text-center space-y-12 border-t border-yellow-900/30 relative" style="background-color: var(--content-bg);">
             <div class="reveal">
                 <h2 class="text-2xl gold-text mb-6 flex items-center justify-center gap-2">
                     <span class="h-px w-8 bg-yellow-700"></span>
                     誠摯邀請
                     <span class="h-px w-8 bg-yellow-700"></span>
                 </h2>
-                <p class="leading-loose tracking-widest text-sm">
+                <p class="leading-loose tracking-widest text-sm text-[#f8d7d7]">
                     兩姓聯姻，一堂締約<br>
                     良緣永結，匹配同稱<br>
                     在這個充滿愛與希望的日子<br>
@@ -271,7 +260,7 @@
                     見證我們的幸福時刻<br>
                 </p>
                <h2 class="text-xl md:text-2xl font-bold my-4 gold-text">因為有您，喜悅更甚</h2>
-                <p class="leading-loose tracking-widest text-sm">
+                <p class="leading-loose tracking-widest text-sm text-[#f8d7d7]">
                             這場婚禮不僅是我們的盟約<br>
                             更是兩家人與好友們的相聚<br>
                             期待在台南與您相見<br>
@@ -279,18 +268,18 @@
                 </p>
             </div>
 
-            <div class="reveal space-y-6">
+            <div class="reveal space-y-6 bg-black/30 py-8 rounded-2xl border border-white/5">
                 <div class="text-xl gold-text font-bold">國曆一一五年一月三十一日(星期六)</div>
-                <p class="text-sm -mt-4 opacity-80">農曆一一四年十二月十三日</p>
-                <div class="flex justify-center items-center gap-8 py-4 border-y border-yellow-900/30">
+                <p class="text-sm -mt-4 opacity-60">農曆一一四年十二月十三日</p>
+                <div class="flex justify-center items-center gap-8 py-4 border-y border-yellow-900/20">
                     <div class="text-center">
-                        <span class="text-xs gold-text block mb-1">入席時間</span>
-                        <span class="text-2xl font-semibold">中午11:30</span>
+                        <span class="text-xs gold-text block mb-1 opacity-70">入席時間</span>
+                        <span class="text-2xl font-semibold">中午 11:30</span>
                     </div>
-                    <div class="w-px h-8 bg-yellow-800"></div>
+                    <div class="w-px h-8 bg-yellow-800/40"></div>
                     <div class="text-center">
-                        <span class="text-xs gold-text block mb-1">開席時間</span>
-                        <span class="text-2xl font-semibold">中午12:00</span>
+                        <span class="text-xs gold-text block mb-1 opacity-70">開席時間</span>
+                        <span class="text-2xl font-semibold">中午 12:00</span>
                     </div>
                 </div>
             </div>
@@ -299,13 +288,13 @@
                 <div class="space-y-1">
                     <h3 class="text-xl font-bold gold-text">福爾摩沙遊艇酒店</h3>
                     <p class="text-lg">水景廳</p>
-                    <p class="text-xs opacity-70 tracking-tighter">台南市安平區安平路988號</p>
+                    <p class="text-xs opacity-60 tracking-tighter">台南市安平區安平路988號</p>
                 </div>
                 
                 <div class="flex flex-col gap-3 pt-4">
                     <a href="https://www.google.com/maps/search/?api=1&query=台南市安平區安平路988號+福爾摩沙遊艇酒店" 
                        target="_blank"
-                       class="bg-[#d4af37] text-stone-900 py-4 rounded-xl font-bold hover:bg-yellow-400 transition transform active:scale-95 shadow-xl flex items-center justify-center gap-2">
+                       class="bg-[#d4af37] text-stone-900 py-4 rounded-full font-bold hover:bg-yellow-400 transition transform active:scale-95 shadow-xl flex items-center justify-center gap-2">
                         <span>📍</span> 查看 Google 地圖
                     </a>
                 </div>
@@ -314,40 +303,50 @@
             <div class="reveal pt-8 border-t border-yellow-900/50">
                 <div class="grid grid-cols-2 gap-6 text-sm">
                     <div class="space-y-2">
-                        <p class="gold-text text-xs">男方家長</p>
+                        <p class="gold-text text-xs opacity-80">男方家長</p>
                         <p class="text-base font-medium">江富美</p>
                     </div>
                     <div class="space-y-2">
-                        <p class="gold-text text-xs">女方家長</p>
+                        <p class="gold-text text-xs opacity-80">女方家長</p>
                         <p class="text-base font-medium leading-snug">吳天助<br>張馨月</p>
                     </div>
                 </div>
             </div>
 
             <div class="reveal py-10">
-                <div class="cursive text-4xl gold-text opacity-80">With Love</div>
+                <div class="cursive text-4xl gold-text opacity-70">With Love</div>
             </div>
         </section>
+
+        <!-- Footer 頁尾 - 優化顏色配置以提升可讀性 -->
+        <footer class="bg-[#240400] py-12 text-center border-t border-yellow-600/30">
+            <div class="mb-5">
+                <span class="text-sm tracking-[0.4em] font-bold" style="color: var(--light-gold);">SHUO-LUN & WAN-CHUN</span>
+            </div>
+            <div class="space-y-1 text-[11px] tracking-[0.25em] font-light" style="color: rgba(243, 229, 171, 0.7);">
+                <p class="uppercase">Wedding Invitation 2026</p>
+                <p class="italic">Made with love for our special day</p>
+            </div>
+            <div class="mt-8 text-[9px] tracking-widest" style="color: rgba(243, 229, 171, 0.3);">
+                © 2026 謝碩倫 & 吳琬淳 版權所有
+            </div>
+        </footer>
     </main>
 
     <script>
-        // 開啟信封函數
         function openEnvelope() {
             const env = document.getElementById('main-envelope');
             const openingScreen = document.getElementById('opening-screen');
             const mainContent = document.getElementById('main-content');
             
-            // 觸發開蓋動畫
             env.classList.add('open');
             
-            // 延遲一段時間後隱藏開場畫面並顯示主內容
             setTimeout(() => {
                 openingScreen.style.opacity = '0';
                 openingScreen.style.visibility = 'hidden';
                 mainContent.style.opacity = '1';
                 mainContent.style.transition = 'opacity 1.5s ease-in';
                 
-                // 啟動主頁面動畫與輪播
                 handleScroll();
                 initSlideshow();
                 createPetals();
@@ -368,7 +367,7 @@
 
         function createPetals() {
             const container = document.getElementById('petal-container');
-            if (container.children.length > 0) return; // 避免重複建立
+            if (container.children.length > 0) return;
             const petalCount = 18;
             for (let i = 0; i < petalCount; i++) {
                 const petal = document.createElement('div');
@@ -394,11 +393,6 @@
         }
 
         window.addEventListener('scroll', handleScroll);
-        
-        // 初始載入時不直接執行動畫，等待信封開啟
-        window.onload = () => {
-            // Pre-load content logic if needed
-        };
     </script>
 </body>
 </html>
