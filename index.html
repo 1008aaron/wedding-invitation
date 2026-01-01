@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 增加此行以解決 Google Sites 嵌入圖片時的 Referrer 策略問題 -->
     <meta name="referrer" content="no-referrer">
     <title>碩倫 ❤️ 琬淳 | 婚禮邀請函</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,6 +28,7 @@
         .cursive {
             font-family: 'Dancing Script', cursive;
         }
+        /* 背景花瓣動畫 */
         .petal {
             position: fixed;
             background-color: #ffc0cb;
@@ -40,6 +42,7 @@
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
+        /* 漸顯動畫 */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -49,6 +52,7 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* 強化直式相框樣式 */
         .gold-border {
             border: 3px solid var(--gold);
             padding: 10px;
@@ -73,6 +77,7 @@
         .top-left { top: -12px; left: -12px; border-right: 0; border-bottom: 0; }
         .bottom-right { bottom: -12px; right: -12px; border-left: 0; border-top: 0; }
 
+        /* 輪播動畫樣式 */
         .slideshow-container {
             position: relative;
             width: 100%;
@@ -104,14 +109,16 @@
         <section class="relative min-h-screen flex flex-col items-center justify-center py-20 px-8 text-center border-b-4 border-yellow-600">
             <div class="cursive text-5xl gold-text mb-10 reveal active">We Are Getting Married</div>
             
+            <!-- 直立式相框 -->
             <div class="mx-auto mb-10 gold-border reveal active" 
                  style="width: 260px; aspect-ratio: 2/3; transition-delay: 0.3s;">
                 <div class="corner-decor top-left"></div>
                 <div class="corner-decor bottom-right"></div>
                 
                 <div class="slideshow-container overflow-hidden">
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/6.jpg" 
+                    <!-- 將 active 設回第一張，確保計時器啟動時邏輯正確 -->
+                    <div class="slide active">
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/1.jpg" 
                              alt="新人婚紗照 1" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
@@ -122,8 +129,8 @@
                         <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/3.jpg" 
                              alt="新人婚紗照 3" class="w-full h-full object-cover">
                     </div>
-                    <div class="slide active">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/1.jpg" 
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/4.jpg" 
                              alt="新人婚紗照 4" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
@@ -131,7 +138,7 @@
                              alt="新人婚紗照 5" class="w-full h-full object-cover">
                     </div>
                     <div class="slide">
-                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/4.jpg" 
+                        <img src="https://raw.githubusercontent.com/1008aaron/wedding-invitation/refs/heads/main/6.jpg" 
                              alt="新人婚紗照 6" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -151,6 +158,7 @@
             </div>
         </section>
 
+        <!-- 第二屏：邀請資訊 -->
         <section class="p-10 text-center space-y-12 bg-stone-900 border-t border-yellow-900 relative">
             <div class="reveal">
                 <h2 class="text-2xl gold-text mb-6 flex items-center justify-center gap-2">
@@ -165,7 +173,7 @@
                     我們誠摯地邀請您<br>
                     見證我們的幸福時刻<br>
                 </p>
-                <h2 class="text-xl md:text-2xl font-bold my-4 golden-text">因為有您，喜悅更甚</h2>
+               <h2 class="text-xl md:text-2xl font-bold my-4 gold-text">因為有您，喜悅更甚</h2>
                 <p class="leading-loose tracking-widest text-sm">
                             這場婚禮不僅是我們的盟約<br>
                             更是兩家人與好友們的相聚<br>
@@ -198,6 +206,7 @@
                 </div>
                 
                 <div class="flex flex-col gap-3 pt-4">
+                    <!-- 更新為更穩定的 Google 地圖原始搜尋連結 -->
                     <a href="https://www.google.com/maps/search/?api=1&query=台南市安平區安平路988號+福爾摩沙遊艇酒店" 
                        target="_blank"
                        class="bg-[#d4af37] text-stone-900 py-4 rounded-xl font-bold hover:bg-yellow-400 transition transform active:scale-95 shadow-xl flex items-center justify-center gap-2">
@@ -231,8 +240,7 @@
             let currentSlide = 0;
             if (slides.length <= 1) return;
             
-            // 此處調整輪播時間 (單位為毫秒)
-            // 4000 = 4秒，您可以根據需求修改為 3000 (3秒) 或 5000 (5秒)
+            // 輪播間隔設定為 3000ms (3秒)
             setInterval(() => {
                 slides[currentSlide].classList.remove('active');
                 currentSlide = (currentSlide + 1) % slides.length;
